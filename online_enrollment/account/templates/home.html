@@ -1,0 +1,58 @@
+{% block content %}
+<style>
+body{font-family:sans-serif;background:#f2f2f2;margin:0}
+.logout-btn{position:fixed;top:20px;right:20px;background:#d9534f;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}
+.logout-btn:hover{background:#c9302c}
+.wrapper,.table-container{background:#fff;max-width:600px;margin:80px auto;padding:1.5rem;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.wrapper{max-width:450px}
+h2,h3{text-align:center;color:#333;margin-bottom:1rem}
+form{display:flex;flex-direction:column;gap:1rem}
+button{padding:12px;background:#4CAF50;color:#fff;border:none;border-radius:8px;cursor:pointer}
+button:hover{background:#45a049}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd}
+th{background:#f5f5f5}
+</style>
+
+<a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+
+<div class="wrapper">
+<h2>Enrollment Form</h2>
+<form method="POST">
+{% csrf_token %} {{ form.as_p }}
+<button type="submit">Submit Enrollment</button>
+</form>
+</div>
+
+<div class="table-container">
+<h3>Submitted Enrollments</h3>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Course</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>Actions</th> <!-- New column header -->
+</tr>
+{% for entry in enrollments %}
+<tr>
+    <td>{{ entry.full_name }}</td>
+    <td>{{ entry.course }}</td>
+    <td>{{ entry.email }}</td>
+    <td>{{ entry.date_created }}</td>
+    <td>
+        <!-- Edit & Delete buttons -->
+        <a href="{% url 'enrollment_edit' entry.id %}" style="color:#fff;background:#4CAF50;padding:4px 8px;border-radius:5px;text-decoration:none;">Edit</a>
+        <a href="{% url 'enrollment_delete' entry.id %}" style="color:#fff;background:#d9534f;padding:4px 8px;border-radius:5px;text-decoration:none;">Delete</a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="5" style="text-align:center;">No enrollments yet.</td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+{% endblock %}

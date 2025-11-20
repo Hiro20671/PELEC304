@@ -1,0 +1,22 @@
+{% block content %}
+<style>
+body {font-family:sans-serif;background:#f2f2f2;margin:0;}
+.wrapper {background:#fff;max-width:400px;margin:100px auto;padding:1.5rem;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.15);}
+h2 {text-align:center;color:#333;margin-bottom:1rem;}
+button {padding:12px;background:#d9534f;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:10px;}
+button:hover {background:#c9302c;}
+a {padding:12px;background:#ccc;color:#000;border-radius:8px;text-decoration:none;}
+a:hover {background:#bbb;}
+.actions {display:flex;justify-content:center;}
+</style>
+
+<div class="wrapper">
+<h2>Delete Enrollment?</h2>
+<p style="text-align:center;">Are you sure you want to delete "{{ enrollment.full_name }}"?</p>
+<form method="POST" class="actions">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'home' %}">Cancel</a>
+</form>
+</div>
+{% endblock %}
