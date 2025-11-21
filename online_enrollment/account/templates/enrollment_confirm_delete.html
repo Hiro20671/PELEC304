@@ -1,22 +1,96 @@
+{% extends "base.html" %}
 {% block content %}
 <style>
-body {font-family:sans-serif;background:#f2f2f2;margin:0;}
-.wrapper {background:#fff;max-width:400px;margin:100px auto;padding:1.5rem;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.15);}
-h2 {text-align:center;color:#333;margin-bottom:1rem;}
-button {padding:12px;background:#d9534f;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-right:10px;}
-button:hover {background:#c9302c;}
-a {padding:12px;background:#ccc;color:#000;border-radius:8px;text-decoration:none;}
-a:hover {background:#bbb;}
-.actions {display:flex;justify-content:center;}
+body {
+    font-family: sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0 1rem; 
+}
+
+.wrapper {
+    background: #fff;
+    max-width: 400px;
+    width: 100%; 
+    margin: 50px auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.15);
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+button, a {
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+button {
+    background: #d9534f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: #c9302c;
+}
+
+a {
+    background: #ccc;
+    color: #000;
+}
+
+a:hover {
+    background: #bbb;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        margin: 30px auto;
+        padding: 1rem;
+    }
+
+    button, a {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .actions {
+        flex-direction: column; 
+    }
+}
 </style>
 
 <div class="wrapper">
-<h2>Delete Enrollment?</h2>
-<p style="text-align:center;">Are you sure you want to delete "{{ enrollment.full_name }}"?</p>
-<form method="POST" class="actions">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
-    <a href="{% url 'home' %}">Cancel</a>
-</form>
+    <h2>Delete Enrollment?</h2>
+    <p>Are you sure you want to delete "{{ enrollment.full_name }}"?</p>
+    <form method="POST" class="actions">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'home' %}">Cancel</a>
+    </form>
 </div>
 {% endblock %}

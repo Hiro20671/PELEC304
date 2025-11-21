@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About - Villa University{% endblock %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url("{% static 'account/images/BACKGROUND.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.95); /* Semi-transparent white */
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.about-container h2 {
+    color: #003366;
+    margin-bottom: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+}
+
+.about-container p {
+    color: #333;
+    font-size: 1.1rem;
+}
+</style>
+
+<div class="about-container">
+    <h2>About Villa State University</h2>
+    <p>
+        Villa State University – Lucena City is a premier institution of higher learning dedicated to academic excellence, innovation, and community service.
+        With a strong commitment to quality education, VSU empowers students to build successful careers while fostering values of integrity, leadership, and social responsibility.
+    </p>
+</div>
+
+{% endblock %}

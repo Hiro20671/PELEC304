@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 1rem; 
+}
+
+.delete-card {
+    background: #fff;
+    padding: 2rem;
+    margin: 80px auto;
+    max-width: 500px;
+    width: 100%; 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.delete-card h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.delete-card p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.delete-card button, .delete-card a {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 6px;
+    color: white;
+    font-size: 1rem;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #d9534f;
+    border: none;
+}
+
+.delete-btn:hover {
+    background: #c9302c;
+}
+
+.cancel-btn {
+    background: #003366;
+}
+
+.cancel-btn:hover {
+    background: #003366;
+}
+
+
+@media (max-width: 480px) {
+    .delete-card {
+        padding: 1.5rem;
+        margin: 40px auto;
+    }
+
+    .delete-card button, .delete-card a {
+        width: 100%; 
+        margin: 6px 0;
+    }
+}
+</style>
+
+<div class="delete-card">
+    <h2>Are you sure you want to delete:</h2>
+    <p><strong>{{ subject.subject_name }} ({{ subject.subject_code }})</strong></p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="delete-btn" type="submit">Yes, Delete</button>
+        <a href="{% url 'home' %}" class="cancel-btn">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact - Villa University{% endblock %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url("{% static 'account/images/BACKGROUND.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-container {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.95); /* Semi-transparent white */
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.contact-container h2 {
+    color: #003366;
+    margin-bottom: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+}
+
+.contact-container p {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.contact-container a {
+    color: #003366;
+    text-decoration: none;
+}
+
+.contact-container a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="contact-container">
+    <h2>Contact Villa State University</h2>
+    <p><strong>Address:</strong> Villa State University, Lucena City, Quezon, Philippines</p>
+    <p><strong>Phone:</strong> +639053997797</p>
+    <p><strong>Email:</strong> <a href="mailto:info@vsu.edu.ph">info@vsu.edu.ph</a></p>
+    <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+    <p>Follow us on social media: 
+        <a href="#">Facebook</a> | 
+        <a href="#">Twitter</a> | 
+        <a href="#">Instagram</a>
+    </p>
+</div>
+
+{% endblock %}

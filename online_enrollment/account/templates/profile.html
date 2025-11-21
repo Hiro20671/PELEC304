@@ -1,0 +1,27 @@
+<!-- account/profile.html -->
+<h2>{{ profile.user.get_full_name }}</h2>
+<p>Age: {{ profile.age }}</p>
+<p>Student ID: {{ profile.student_id }}</p>
+<p>Course: {{ profile.course }}</p>
+<p>Section: {{ profile.section }}</p>
+
+<h3>Subjects</h3>
+<ul>
+{% for subject in profile.subjects.all %}
+    <li>
+        {{ subject.code }} - {{ subject.name }}<br>
+        Instructor: {{ subject.instructor }}<br>
+        Room: {{ subject.room }}<br>
+        Department: {{ subject.department }}<br>
+        Time: {{ subject.time|time:"h:i A" }}
+    </li>
+{% empty %}
+    <li>No subjects assigned.</li>
+{% endfor %}
+</ul>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Profile</button>
+</form>

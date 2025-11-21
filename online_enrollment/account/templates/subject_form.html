@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 1rem; 
+}
+
+.subject-card {
+    background: #fff;
+    padding: 2rem;
+    margin: 80px auto;
+    max-width: 600px;
+    width: 100%; 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+}
+
+.subject-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.subject-card form input, 
+.subject-card form select, 
+.subject-card form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #003366;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #003366;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 8px 14px;
+    background: #ccc;
+    border-radius: 6px;
+    text-decoration: none;
+    color: black;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: #bbb;
+}
+
+@media (max-width: 480px) {
+    .subject-card {
+        padding: 1.5rem;
+        margin: 40px auto;
+    }
+
+    .submit-btn, .back-btn {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+</style>
+
+<div class="subject-card">
+
+    <a href="{% url 'home' %}" class="back-btn">← Back</a>
+
+    <h2>{{ title }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit-btn" type="submit">Save</button>
+    </form>
+
+</div>
+
+{% endblock %}
