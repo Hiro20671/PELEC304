@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ title }} - Online Enrollment{% endblock %}
+
+{% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url("{% static 'account/images/BACKGROUND.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 1rem;
+    min-height: 100vh;
+    color: #333;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 600px;
+    width: 100%;
+    margin: 80px auto;
+    padding: 3rem 4rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 2rem;
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+input, select, textarea {
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 15px;
+    background: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #002244;
+}
+
+a {
+    text-align: center;
+    margin-top: 15px;
+    display: block;
+    color: #003366;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #001122;
+}
+
+@media (max-width: 768px) {
+    .form-card {
+        margin: 40px auto;
+        padding: 2rem 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    input, select, textarea, button {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    form {
+        gap: 1rem;
+    }
+}
+@media (max-width: 480px) {
+    .form-card {
+        padding: 1.5rem 1.8rem;
+        margin: 30px auto;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    input, select, textarea, button {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+</style>
+
+<div class="form-card">
+    <h2>{{ title }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'home' %}">Cancel</a>
+</div>
+{% endblock %}

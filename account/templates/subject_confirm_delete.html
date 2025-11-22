@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Delete Subject - Online Enrollment{% endblock %}
+
+{% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url("{% static 'account/images/BACKGROUND.png' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 1rem;
+    min-height: 100vh;
+    color: #333;
+}
+
+.delete-card {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 500px;
+    width: 100%;
+    margin: 100px auto;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.delete-card h2 {
+    margin-bottom: 1rem;
+    color: #003366;
+}
+
+.delete-card p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+button, a {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+button {
+    background: #d9534f;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    background: #c9302c;
+}
+
+a {
+    background: #003366;
+    color: #fff;
+}
+
+a:hover {
+    background: #002244;
+}
+
+@media (max-width: 480px) {
+    .delete-card {
+        padding: 2rem;
+        margin: 50px auto;
+    }
+
+    button, a {
+        width: 100%;
+        margin: 6px 0;
+    }
+}
+</style>
+
+<div class="delete-card">
+    <h2>Are you sure you want to delete:</h2>
+    <p><strong>{{ subject.subject_name }} ({{ subject.subject_code }})</strong></p>
+    <form method="POST" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'home' %}">Cancel</a>
+    </form>
+</div>
+{% endblock %}
